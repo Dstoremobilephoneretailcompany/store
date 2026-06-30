@@ -3,270 +3,574 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>D Store — Mobile Phone Retail Company | Kuwait</title>
+<title>D Store Mobile Phone Retail Company</title>
 <style>
-  :root{
-    --black:#0a0a0a;
-    --black-soft:#141414;
-    --gold:#caa24a;
-    --gold-bright:#e8c873;
-    --cream:#f4f1ea;
-    --grey:#8a8a8a;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{
-    background:var(--black);
-    color:var(--cream);
-    font-family:'Segoe UI', Tahoma, Arial, sans-serif;
-    line-height:1.5;
-  }
-  a{color:inherit;text-decoration:none;}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #f5f5f5; color: #222; }
 
-  /* HEADER */
-  header{
-    position:sticky;top:0;z-index:50;
-    background:rgba(10,10,10,0.92);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid rgba(202,162,74,0.25);
-    padding:16px 24px;
-    display:flex;align-items:center;justify-content:space-between;
+  /* ========== HEADER ========== */
+  .header {
+    background: #1a1a2e;
+    color: white;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
-  .logo{
-    font-size:24px;font-weight:700;letter-spacing:1px;
-    color:var(--gold);
+  .logo { font-size: 22px; font-weight: bold; color: #00d4ff; }
+  .logo span { color: white; }
+  .cart-btn {
+    background: #00d4ff;
+    color: #1a1a2e;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
-  .logo span{color:var(--cream);font-weight:300;}
-  nav a{margin-left:24px;font-size:14px;color:var(--cream);opacity:0.85;}
-  nav a:hover{color:var(--gold);}
-
-  /* HERO */
-  .hero{
-    padding:80px 24px 60px;
-    text-align:center;
-    background:radial-gradient(circle at top, rgba(202,162,74,0.08), transparent 60%);
-  }
-  .hero h1{
-    font-size:clamp(32px,6vw,56px);
-    font-weight:700;
-    letter-spacing:0.5px;
-    margin-bottom:16px;
-  }
-  .hero h1 .accent{color:var(--gold);}
-  .hero p{
-    color:var(--grey);
-    font-size:17px;
-    max-width:520px;
-    margin:0 auto 28px;
-  }
-  .hero-cta{
-    display:inline-block;
-    background:linear-gradient(135deg,var(--gold),var(--gold-bright));
-    color:var(--black);
-    font-weight:700;
-    padding:14px 32px;
-    border-radius:30px;
-    font-size:15px;
-    transition:transform 0.2s ease;
-  }
-  .hero-cta:hover{transform:translateY(-2px);}
-
-  /* SECTION TITLE */
-  .section-title{
-    text-align:center;
-    margin:60px 0 36px;
-  }
-  .section-title h2{
-    font-size:28px;
-    font-weight:700;
-    color:var(--cream);
-  }
-  .section-title .line{
-    width:50px;height:2px;
-    background:var(--gold);
-    margin:14px auto 0;
+  .cart-count {
+    background: #ff4757;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  /* PRODUCT GRID */
-  .products{
-    max-width:1100px;
-    margin:0 auto;
-    padding:0 24px 80px;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:28px;
+  /* ========== SEARCH ========== */
+  .search-section {
+    background: #16213e;
+    padding: 14px 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
   }
-  .card{
-    background:var(--black-soft);
-    border:1px solid rgba(202,162,74,0.15);
-    border-radius:14px;
-    overflow:hidden;
-    display:flex;flex-direction:column;
-    transition:border-color 0.2s ease, transform 0.2s ease;
+  .search-section input {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    font-size: 15px;
+    background: #0f3460;
+    color: white;
   }
-  .card:hover{
-    border-color:rgba(202,162,74,0.5);
-    transform:translateY(-4px);
-  }
-  .card-img{
-    width:100%;
-    aspect-ratio:1/1;
-    background:#1c1c1c;
-    display:flex;align-items:center;justify-content:center;
-    overflow:hidden;
-  }
-  .card-img img{width:100%;height:100%;object-fit:cover;}
-  .card-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1;}
-  .card-body h3{font-size:16px;font-weight:600;margin-bottom:8px;}
-  .price{
-    color:var(--gold);
-    font-size:20px;
-    font-weight:700;
-    margin:6px 0 14px;
-  }
-  .price .unit{font-size:13px;color:var(--grey);font-weight:400;margin-left:4px;}
-  .order-btn{
-    margin-top:auto;
-    background:#1f7a3d;
-    color:#fff;
-    text-align:center;
-    padding:11px;
-    border-radius:8px;
-    font-size:14px;
-    font-weight:600;
-    display:flex;align-items:center;justify-content:center;gap:8px;
-  }
-  .order-btn:hover{background:#22923f;}
+  .search-section input::placeholder { color: #aaa; }
 
-  /* FOOTER */
-  footer{
-    border-top:1px solid rgba(202,162,74,0.2);
-    padding:40px 24px;
-    text-align:center;
-    color:var(--grey);
-    font-size:13px;
+  /* ========== CATEGORIES ========== */
+  .cat-bar {
+    background: #0f3460;
+    padding: 10px 20px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
   }
-  footer .wa-float{
-    position:fixed;
-    bottom:22px;right:22px;
-    background:#1f7a3d;
-    width:58px;height:58px;
-    border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 14px rgba(0,0,0,0.4);
-    z-index:60;
+  .cat-btn {
+    padding: 7px 16px;
+    border-radius: 20px;
+    border: 1.5px solid #00d4ff;
+    background: transparent;
+    color: #00d4ff;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
   }
-  footer .wa-float svg{width:28px;height:28px;}
+  .cat-btn.active, .cat-btn:hover {
+    background: #00d4ff;
+    color: #1a1a2e;
+    font-weight: bold;
+  }
 
-  @media(max-width:480px){
-    nav{display:none;}
+  /* ========== BANNER ========== */
+  .banner {
+    background: linear-gradient(135deg, #0f3460, #16213e);
+    color: white;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #00d4ff;
+  }
+  .banner-title { font-size: 16px; font-weight: bold; color: #00d4ff; }
+  .banner-sub { font-size: 13px; color: #ccc; margin-top: 3px; }
+
+  /* ========== PRODUCTS GRID ========== */
+  .products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 14px;
+    padding: 18px 16px;
+  }
+  .product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  }
+  .product-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 52px;
+  }
+  .product-img img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+  }
+  .product-info { padding: 11px 12px 13px; }
+  .badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .badge-new { background: #e3fcef; color: #1a7a4a; }
+  .badge-hot { background: #ffe5e5; color: #c0392b; }
+  .product-name { font-size: 13px; font-weight: bold; color: #222; margin-bottom: 3px; line-height: 1.3; }
+  .product-desc { font-size: 12px; color: #888; margin-bottom: 6px; }
+  .product-price { font-size: 16px; font-weight: bold; color: #0f3460; margin-bottom: 9px; }
+  .product-price span { font-size: 11px; color: #aaa; font-weight: normal; }
+  .add-btn {
+    width: 100%;
+    padding: 8px;
+    background: #1a1a2e;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: background 0.15s;
+  }
+  .add-btn:hover { background: #0f3460; }
+
+  /* ========== CART SIDEBAR ========== */
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 200;
+  }
+  .overlay.open { display: block; }
+  .cart-panel {
+    position: fixed;
+    top: 0; right: -340px;
+    width: 320px;
+    height: 100vh;
+    background: white;
+    z-index: 300;
+    padding: 20px;
+    overflow-y: auto;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .cart-panel.open { right: 0; }
+  .cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1.5px solid #eee;
+  }
+  .cart-header h2 { font-size: 18px; color: #1a1a2e; }
+  .close-cart {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #888;
+  }
+  .cart-items { flex: 1; }
+  .cart-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    align-items: center;
+  }
+  .cart-item-icon {
+    font-size: 28px;
+    width: 44px;
+    height: 44px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-size: 13px; font-weight: bold; color: #222; }
+  .cart-item-price { font-size: 12px; color: #0f3460; margin-top: 2px; }
+  .qty-ctrl { display: flex; align-items: center; gap: 6px; margin-top: 5px; }
+  .qty-btn {
+    width: 24px; height: 24px;
+    border: 1.5px solid #ddd;
+    border-radius: 5px;
+    background: white;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .qty-btn:hover { background: #f0f0f0; }
+  .qty-num { font-size: 14px; font-weight: bold; min-width: 18px; text-align: center; }
+  .remove-btn {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .empty-cart { text-align: center; padding: 50px 0; color: #aaa; font-size: 15px; }
+  .cart-footer { margin-top: 16px; }
+  .total-box {
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 6px;
+  }
+  .total-row.final {
+    font-size: 17px;
+    font-weight: bold;
+    color: #1a1a2e;
+    border-top: 1.5px solid #ddd;
+    padding-top: 8px;
+    margin-top: 6px;
+    margin-bottom: 0;
+  }
+  .checkout-btn {
+    width: 100%;
+    padding: 13px;
+    background: #1a1a2e;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 9px;
+  }
+  .checkout-btn:hover { background: #0f3460; }
+  .whatsapp-btn {
+    width: 100%;
+    padding: 12px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .whatsapp-btn:hover { background: #1ebe5d; }
+
+  /* ========== FOOTER ========== */
+  .footer {
+    background: #1a1a2e;
+    color: #aaa;
+    text-align: center;
+    padding: 16px;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+  .footer span { color: #00d4ff; }
+
+  /* ========== NO RESULTS ========== */
+  .no-results {
+    text-align: center;
+    padding: 50px;
+    color: #aaa;
+    font-size: 16px;
+    grid-column: 1 / -1;
+  }
+
+  /* ========== MOBILE ========== */
+  @media (max-width: 500px) {
+    .products { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 12px 10px; }
+    .cart-panel { width: 100%; right: -100%; }
+    .logo { font-size: 18px; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">D<span>Store</span></div>
-  <nav>
-    <a href="#products">Products</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <h1>D Store <span class="accent">Mobile</span><br>Phone Retail Company</h1>
-  <p>Kuwait ki trusted electronics store — mobile phones, cases &amp; accessories, best price guarantee, WhatsApp pe order karein.</p>
-  <a href="#products" class="hero-cta">Shop Now</a>
-</section>
-
-<div id="products" class="section-title">
-  <h2>Our Products</h2>
-  <div class="line"></div>
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">D Store<span> Mobile</span></div>
+  <button class="cart-btn" onclick="toggleCart()">
+    🛒 Cart <div class="cart-count" id="cart-count">0</div>
+  </button>
 </div>
 
-<!--
-  ===========================================================
-  PRODUCTS ADD/EDIT KARNE KA TARIKA (Md, ye padhein):
-  - Har product ek "card" hai, niche pattern copy-paste karke
-    naya product add kar sakte hain.
-  - Image file ka naam wahi rakhein jo aapne GitHub repo mein
-    upload kiya hai (root folder mein hona chahiye).
-  - PRICE wali line mein number change karein (KWD mein).
-  - Agar product available nahi hai to poora <div class="card">...</div> hata dein.
-  ===========================================================
--->
-<div class="products">
-
-  <!-- Product 1 -->
-  <div class="card">
-    <div class="card-img">
-      <img src="9c86c40f-3916-4b62-bd72-12438e3c3b22.avif" alt="Premium Ultra-Transparent Phone Case">
-    </div>
-    <div class="card-body">
-      <h3>Premium Ultra-Transparent Case</h3>
-      <div class="price">2.500<span class="unit">KWD</span></div>
-      <a class="order-btn" target="_blank"
-         href="https://wa.me/96565602526?text=Hi%2C%20I%20want%20to%20order%3A%20Premium%20Ultra-Transparent%20Case">
-        Order on WhatsApp
-      </a>
-    </div>
-  </div>
-
-  <!-- Product 2 -->
-  <div class="card">
-    <div class="card-img">
-      <img src="b44ecd6e-660b-49fe-8103-bfafbc21479b.avif" alt="Premium Ultra-Transparent Phone Case">
-    </div>
-    <div class="card-body">
-      <h3>Premium Ultra-Transparent Case (2nd angle)</h3>
-      <div class="price">2.500<span class="unit">KWD</span></div>
-      <a class="order-btn" target="_blank"
-         href="https://wa.me/96565602526?text=Hi%2C%20I%20want%20to%20order%3A%20Premium%20Ultra-Transparent%20Case">
-        Order on WhatsApp
-      </a>
-    </div>
-  </div>
-
-  <!-- Product 3 -->
-  <div class="card">
-    <div class="card-img">
-      <img src="3ee67ebc14d84a42af8ef06760f0d63b-goods.avif" alt="Transparent Case for iPhone 17 Pro Max">
-    </div>
-    <div class="card-body">
-      <h3>Transparent Case — iPhone 17 Pro Max</h3>
-      <div class="price">3.000<span class="unit">KWD</span></div>
-      <a class="order-btn" target="_blank"
-         href="https://wa.me/96565602526?text=Hi%2C%20I%20want%20to%20order%3A%20Transparent%20Case%20for%20iPhone%2017%20Pro%20Max">
-        Order on WhatsApp
-      </a>
-    </div>
-  </div>
-
-  <!-- Product 4 -->
-  <div class="card">
-    <div class="card-img">
-      <img src="45262303c8b348598b956e4aa44788ac-goods.avif" alt="Transparent Case for iPhone 17 Pro Max">
-    </div>
-    <div class="card-body">
-      <h3>Transparent Case — iPhone 17 Pro Max (2nd angle)</h3>
-      <div class="price">3.000<span class="unit">KWD</span></div>
-      <a class="order-btn" target="_blank"
-         href="https://wa.me/96565602526?text=Hi%2C%20I%20want%20to%20order%3A%20Transparent%20Case%20for%20iPhone%2017%20Pro%20Max">
-        Order on WhatsApp
-      </a>
-    </div>
-  </div>
-
+<!-- SEARCH -->
+<div class="search-section">
+  <input type="text" id="search-input" placeholder="🔍  Search products..." oninput="filterProducts()">
 </div>
 
-<footer id="contact">
-  <p>D Store Mobile Phone Retail Company — Kuwait</p>
-  <p style="margin-top:6px;">WhatsApp Order: +965 6560 2526</p>
-  <p style="margin-top:14px;">&copy; 2026 D Store. All rights reserved.</p>
-</footer>
+<!-- CATEGORIES -->
+<div class="cat-bar" id="cat-bar">
+  <button class="cat-btn active" onclick="filterCat('all', this)">All</button>
+  <button class="cat-btn" onclick="filterCat('smartphones', this)">📱 Smartphones</button>
+  <button class="cat-btn" onclick="filterCat('accessories', this)">🔌 Accessories</button>
+  <button class="cat-btn" onclick="filterCat('earbuds', this)">🎧 Earbuds</button>
+  <button class="cat-btn" onclick="filterCat('tablets', this)">💻 Tablets</button>
+  <button class="cat-btn" onclick="filterCat('smartwatch', this)">⌚ Watches</button>
+</div>
 
-<a class="wa-float" href="https://wa.me/96565602526?text=Hi%2C%20I%20have%20a%20question" target="_blank" aria-label="WhatsApp">
-  <svg viewBox="0 0 32 32" fill="white"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.39.7 4.61 1.91 6.48L4 29l7.7-1.86A11.93 11.93 0 0 0 16 27c6.627 0 12-5.373 12-12S22.628 3 16.001 3Zm0 21.6c-1.84 0-3.56-.5-5.04-1.37l-.36-.21-4.18 1.01 1.06-4.08-.24-.38A9.56 9.56 0 0 1 5.6 15c0-5.74 4.66-10.4 10.4-10.4S26.4 9.26 26.4 15 21.74 24.6 16.001 24.6Zm5.7-7.78c-.31-.16-1.85-.91-2.14-1.02-.29-.11-.5-.16-.71.16-.21.31-.81 1.02-1 1.23-.18.21-.37.23-.68.08-.31-.16-1.3-.48-2.47-1.53-.91-.81-1.53-1.81-1.71-2.12-.18-.31-.02-.47.14-.63.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.7-.97-2.33-.26-.62-.52-.53-.71-.54l-.6-.01c-.21 0-.55.08-.84.39-.29.31-1.1 1.08-1.1 2.63 0 1.55 1.13 3.05 1.29 3.26.16.21 2.22 3.39 5.38 4.75.75.32 1.34.51 1.8.66.76.24 1.45.21 2 .13.61-.09 1.85-.76 2.11-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/></svg>
-</a>
+<!-- BANNER -->
+<div class="banner">
+  <div>
+    <div class="banner-title">🚚 Free Delivery — Kuwait City</div>
+    <div class="banner-sub">Orders above KWD 10 · Cash on Delivery available</div>
+  </div>
+  <div style="font-size:32px">📦</div>
+</div>
 
+<!-- PRODUCTS -->
+<div class="products" id="products-grid"></div>
+
+<!-- FOOTER -->
+<div class="footer">
+  TechZone Kuwait © 2025 · WhatsApp: <span id="footer-whatsapp">+965 XXXX XXXX</span> · Hawalli, Kuwait
+</div>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+<!-- CART PANEL -->
+<div class="cart-panel" id="cart-panel">
+  <div class="cart-header">
+    <h2>🛒 Your Cart</h2>
+    <button class="close-cart" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-footer" id="cart-footer"></div>
+</div>
+
+<script>
+// ============================================================
+//   ✏️  YAHAN APNI DETAILS DAALO
+// ============================================================
+const STORE_NAME    = "D Store Mobile Phone Retail Company";       // Apna store naam
+const WHATSAPP_NUM  = "96512345678";           // Apna Kuwait number (country code ke saath, + nahi)
+const DELIVERY_MSG  = "Free delivery in Kuwait City above KWD 10";
+
+// ============================================================
+//   🛍️  APNE PRODUCTS YAHAN ADD KARO
+//
+//   Ek product ka format:
+//   {
+//     id     : unique number (1, 2, 3 ...)
+//     name   : "Product naam"
+//     price  : 25.500          (KWD mein - 3 decimal)
+//     desc   : "Short description"
+//     cat    : "smartphones" / "accessories" / "earbuds" / "tablets" / "smartwatch"
+//     badge  : "new" / "hot" / ""   (khaali = koi badge nahi)
+//     icon   : "📱"            (emoji — agar photo nahi hai)
+//     image  : ""              (photo file naam — jaise "samsung.jpg" — khaali chodo agar emoji use karna hai)
+//   }
+// ============================================================
+const products = [
+  { id:1,  name:"Samsung Galaxy A55",      price:62.500,  cat:"smartphones",  badge:"hot",  icon:"📱", image:"", desc:"8GB RAM · 128GB · Blue" },
+  { id:2,  name:"iPhone 15 (128GB)",       price:149.000, cat:"smartphones",  badge:"new",  icon:"📱", image:"", desc:"Black · Unlocked · Original" },
+  { id:3,  name:"Xiaomi Redmi 13C",        price:22.000,  cat:"smartphones",  badge:"",     icon:"📱", image:"", desc:"4GB RAM · 64GB Storage" },
+  { id:4,  name:"AirPods Pro 2nd Gen",     price:55.000,  cat:"earbuds",      badge:"hot",  icon:"🎧", image:"", desc:"Active Noise Cancelling" },
+  { id:5,  name:"Samsung Galaxy Buds2",    price:28.500,  cat:"earbuds",      badge:"",     icon:"🎧", image:"", desc:"True Wireless · 5hr battery" },
+  { id:6,  name:"USB-C Fast Charger 65W",  price:5.500,   cat:"accessories",  badge:"",     icon:"🔌", image:"", desc:"Universal GaN Charger" },
+  { id:7,  name:"Phone Case Xiaomi 14",    price:2.500,   cat:"accessories",  badge:"",     icon:"📦", image:"", desc:"Shockproof · Soft Cover" },
+  { id:8,  name:"Tempered Glass (2 pack)", price:1.500,   cat:"accessories",  badge:"",     icon:"🔲", image:"", desc:"9H Hardness · Anti-scratch" },
+  { id:9,  name:"iPad 10th Gen 64GB",      price:118.000, cat:"tablets",      badge:"new",  icon:"💻", image:"", desc:"Wi-Fi · Space Gray" },
+  { id:10, name:"Samsung Tab A9+",         price:78.000,  cat:"tablets",      badge:"",     icon:"💻", image:"", desc:"8GB RAM · 128GB · Wi-Fi" },
+  { id:11, name:"Apple Watch SE 2",        price:88.000,  cat:"smartwatch",   badge:"hot",  icon:"⌚", image:"", desc:"40mm · GPS · Midnight" },
+  { id:12, name:"Samsung Galaxy Watch 6",  price:72.000,  cat:"smartwatch",   badge:"new",  icon:"⌚", image:"", desc:"44mm · Bluetooth · Black" },
+];
+// ============================================================
+//   PRODUCTS LIST KHATAM — UPAR PRODUCTS ADD KARO
+// ============================================================
+
+// ---- App State ----
+let cart = {};
+let currentCat = "all";
+
+// ---- Render Products ----
+function renderProducts() {
+  const grid = document.getElementById("products-grid");
+  const search = document.getElementById("search-input").value.toLowerCase();
+  const filtered = products.filter(p =>
+    (currentCat === "all" || p.cat === currentCat) &&
+    p.name.toLowerCase().includes(search)
+  );
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="no-results">😕 Koi product nahi mila</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => {
+    const imgHTML = p.image
+      ? `<img src="${p.image}" alt="${p.name}" onerror="this.parentElement.innerHTML='${p.icon}'">`
+      : p.icon;
+    const badgeHTML = p.badge === "new"
+      ? '<span class="badge badge-new">✨ New</span>'
+      : p.badge === "hot"
+      ? '<span class="badge badge-hot">🔥 Hot</span>'
+      : '<span style="display:block;height:20px"></span>';
+    return `
+      <div class="product-card">
+        <div class="product-img">${imgHTML}</div>
+        <div class="product-info">
+          ${badgeHTML}
+          <div class="product-name">${p.name}</div>
+          <div class="product-desc">${p.desc}</div>
+          <div class="product-price">KWD ${p.price.toFixed(3)} <span>incl. VAT</span></div>
+          <button class="add-btn" onclick="addToCart(${p.id})">+ Add to Cart</button>
+        </div>
+      </div>`;
+  }).join("");
+}
+
+// ---- Filter by Category ----
+function filterCat(cat, el) {
+  currentCat = cat;
+  document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+  el.classList.add("active");
+  renderProducts();
+}
+
+// ---- Filter by Search ----
+function filterProducts() { renderProducts(); }
+
+// ---- Cart Functions ----
+function addToCart(id) {
+  cart[id] = (cart[id] || 0) + 1;
+  updateCartUI();
+  // Bounce animation on cart button
+  const btn = document.querySelector(".cart-btn");
+  btn.style.transform = "scale(1.15)";
+  setTimeout(() => btn.style.transform = "scale(1)", 200);
+}
+
+function changeQty(id, delta) {
+  cart[id] = (cart[id] || 0) + delta;
+  if (cart[id] <= 0) delete cart[id];
+  updateCartUI();
+}
+
+function removeItem(id) {
+  delete cart[id];
+  updateCartUI();
+}
+
+function updateCartUI() {
+  const entries = Object.entries(cart);
+  const totalItems = Object.values(cart).reduce((a, b) => a + b, 0);
+  document.getElementById("cart-count").textContent = totalItems;
+
+  const itemsDiv = document.getElementById("cart-items");
+  const footerDiv = document.getElementById("cart-footer");
+
+  if (entries.length === 0) {
+    itemsDiv.innerHTML = '<div class="empty-cart">🛒<br>Cart is empty</div>';
+    footerDiv.innerHTML = "";
+    return;
+  }
+
+  itemsDiv.innerHTML = entries.map(([id, qty]) => {
+    const p = products.find(x => x.id === parseInt(id));
+    return `
+      <div class="cart-item">
+        <div class="cart-item-icon">${p.icon}</div>
+        <div class="cart-item-info">
+          <div class="cart-item-name">${p.name}</div>
+          <div class="cart-item-price">KWD ${p.price.toFixed(3)}</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty(${id},-1)">−</button>
+            <span class="qty-num">${qty}</span>
+            <button class="qty-btn" onclick="changeQty(${id},1)">+</button>
+          </div>
+        </div>
+        <button class="remove-btn" onclick="removeItem(${id})">🗑</button>
+      </div>`;
+  }).join("");
+
+  const subtotal = entries.reduce((s, [id, qty]) =>
+    s + products.find(x => x.id === parseInt(id)).price * qty, 0);
+
+  // Build WhatsApp message
+  const orderLines = entries.map(([id, qty]) => {
+    const p = products.find(x => x.id === parseInt(id));
+    return `• ${p.name} x${qty} = KWD ${(p.price * qty).toFixed(3)}`;
+  }).join("\n");
+  const waMsg = encodeURIComponent(
+    `Assalamu Alaikum!\nMain order karna chahta hoon:\n\n${orderLines}\n\nTotal: KWD ${subtotal.toFixed(3)}\n\nMera naam aur address:`
+  );
+
+  footerDiv.innerHTML = `
+    <div class="total-box">
+      <div class="total-row"><span>Subtotal (${totalItems} items)</span><span>KWD ${subtotal.toFixed(3)}</span></div>
+      <div class="total-row"><span>Delivery</span><span style="color:#27ae60">Free 🎉</span></div>
+      <div class="total-row final"><span>Total</span><span>KWD ${subtotal.toFixed(3)}</span></div>
+    </div>
+    <button class="checkout-btn" onclick="alert('Order place karne ke liye neeche WhatsApp button use karo!')">
+      ✅ Checkout — KWD ${subtotal.toFixed(3)}
+    </button>
+    <a href="https://wa.me/${WHATSAPP_NUM}?text=${waMsg}" target="_blank" style="text-decoration:none">
+      <button class="whatsapp-btn">
+        📲 Order via WhatsApp
+      </button>
+    </a>`;
+}
+
+// ---- Toggle Cart ----
+function toggleCart() {
+  document.getElementById("cart-panel").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("open");
+}
+
+// ---- Update Footer WhatsApp ----
+document.getElementById("footer-whatsapp").textContent = "+" + WHATSAPP_NUM;
+document.title = STORE_NAME;
+
+// ---- Init ----
+renderProducts();
+updateCartUI();
+</script>
 </body>
 </html>
